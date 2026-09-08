@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { appendIdeaRow, migrateLegacyIdeaIds } from "./googleSheets";
 
-describe("getNextSequentialId", () => {
+describe("Google Sheets IDs", () => {
   afterEach(() => vi.restoreAllMocks());
 
   it("deriva o ID da linha reservada pelo append", async () => {
@@ -23,6 +23,7 @@ describe("getNextSequentialId", () => {
     const body = JSON.parse(String(request.body));
     expect(body.values[0][0]).toBe("=ROW()-1");
     expect(body.values[0][2]).toBe("'=conteúdo tratado como texto");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
   it("migra IDs legados e referências em lote", async () => {
