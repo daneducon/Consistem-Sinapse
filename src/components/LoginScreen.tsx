@@ -12,14 +12,14 @@ export default function LoginScreen({ onLogin, signingIn }: LoginScreenProps) {
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[var(--color-background)] text-[var(--color-on-surface)] font-sans selection:bg-[var(--color-secondary)]/30 selection:text-white">
       {/* Coluna Esquerda: Apresentação Institucional Consistem Sinapse (Dark Theme) */}
-      <section className="min-w-0 lg:w-[56%] flex flex-col justify-between p-8 sm:p-12 lg:p-16 xl:p-20 relative overflow-hidden bg-[var(--color-surface)] border-b lg:border-b-0 lg:border-r border-[var(--color-surface-bright)]">
+      <section className="min-w-0 lg:w-[56%] flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-20 relative overflow-hidden bg-[var(--color-surface)] border-b lg:border-b-0 lg:border-r border-[var(--color-surface-bright)]">
         {/* Topo: Logo Consistem com badge Sinapse */}
         <header className="relative z-10">
           <ConsistemLogo variant="white" badge="Sinapse" size="lg" />
         </header>
 
         {/* Centro: Mensagem Central do Consistem Sinapse */}
-        <div className="my-12 lg:my-auto w-full max-w-[620px] relative z-10">
+        <div className="my-8 sm:my-10 lg:my-12 w-full max-w-[620px] relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export default function LoginScreen({ onLogin, signingIn }: LoginScreenProps) {
         </div>
 
         {/* Rodapé da Coluna Esquerda: Badge de Status de Conexão Segura */}
-        <footer className="relative z-10 pt-4">
+        <footer className="relative z-10">
           <div className="inline-flex items-center gap-2.5 text-xs sm:text-[13px] text-[#A2A3A8] font-normal">
             <span className="relative flex h-3 w-3 items-center justify-center">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2E9E66] opacity-40"></span>
