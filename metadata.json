@@ -1,0 +1,6 @@
+{
+  "name": "Captura de Ideias",
+  "description": "Consistem Sinapse - Grafo de Conhecimento e Análise Semântica de Ideias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["SERVER_SIDE_AI_ANALYSIS", "GOOGLE_OAUTH", "GOOGLE_SHEETS_INTEGRATION"]
+}

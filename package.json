@@ -1,0 +1,45 @@
+{
+  "name": "consistem-sinapse",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx watch server/dev.ts",
+    "client:dev": "vite --port=3000 --host=0.0.0.0",
+    "server:dev": "tsx watch server/index.ts",
+    "build": "vite build && tsc -p tsconfig.server.json",
+    "build:client": "vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start": "node dist-server/index.js",
+    "preview": "vite preview",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true});require('fs').rmSync('dist-server',{recursive:true,force:true})\"",
+    "lint": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
+  }
+}
