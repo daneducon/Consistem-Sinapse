@@ -300,8 +300,7 @@ export default function IdeaCapture({
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex items-start gap-3">
                 <div>
-                  <p className="text-sm font-semibold text-white">Registre o que merece continuar vivo</p>
-                  <p className="mt-0.5 text-xs text-white/55">Escreva livremente ou cole um link (YouTube, X, LinkedIn e artigos)</p>
+                  <p className="text-sm font-semibold text-white">Escreva livremente ou cole um link</p>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5" aria-label="Fontes suportadas">
                     <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
                       <Youtube size={11} className="text-red-400" />
@@ -317,7 +316,7 @@ export default function IdeaCapture({
                     </span>
                     <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
                       <Newspaper size={11} className="text-[#EBAF2D]" />
-                      Blogs e artigos
+                      Artigos
                     </span>
                   </div>
                 </div>
