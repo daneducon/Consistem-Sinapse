@@ -20,6 +20,26 @@ import { detectUrl } from "../lib/urlReader";
 import { formatIdeaReference } from "../lib/ideaReference";
 import { SessionExpiredError } from "../lib/errors";
 
+function XLogo({ size = 15, className = "" }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={`shrink-0 ${className}`}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z" />
+    </svg>
+  );
+}
+
+function isXDomain(domain: string): boolean {
+  const lower = domain.toLowerCase();
+  return lower === "x.com" || lower.endsWith(".x.com") || lower === "twitter.com" || lower.endsWith(".twitter.com");
+}
+
 interface IdeaCaptureProps {
   spreadsheet: SpreadsheetConfig | null;
   ideas: Idea[];
@@ -288,6 +308,10 @@ export default function IdeaCapture({
                       YouTube
                     </span>
                     <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
+                      <XLogo size={11} className="text-white" />
+                      X
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
                       <Linkedin size={11} className="text-sky-400" />
                       LinkedIn
                     </span>
@@ -300,7 +324,7 @@ export default function IdeaCapture({
               </div>
               <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-2.5 py-1 text-[11px] font-medium text-emerald-300">
                 <ShieldCheck size={11} />
-                Sincronizado ao Sheets
+                Sincronizado
               </span>
             </div>
 
@@ -341,6 +365,8 @@ export default function IdeaCapture({
                   <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#EBAF2D]/10 border border-[#EBAF2D]/25 text-xs text-[#EBAF2D]">
                     {detectedUrl.type === "youtube" ? (
                       <Youtube size={15} className="shrink-0 text-red-400" />
+                    ) : isXDomain(detectedUrl.domain) ? (
+                      <XLogo size={15} className="text-white" />
                     ) : detectedUrl.domain.includes("linkedin") ? (
                       <Linkedin size={15} className="shrink-0 text-sky-400" />
                     ) : detectedUrl.type === "article" ? (
@@ -352,11 +378,13 @@ export default function IdeaCapture({
                       <span className="font-medium text-white/90">
                         {detectedUrl.type === "youtube"
                           ? "Vídeo do YouTube detectado"
-                          : detectedUrl.domain.includes("linkedin")
-                            ? "Post do LinkedIn detectado"
-                            : detectedUrl.type === "article"
-                              ? "Artigo / Blog detectado"
-                              : "Link da Web detectado"}
+                          : isXDomain(detectedUrl.domain)
+                            ? "Publicação do X detectada"
+                            : detectedUrl.domain.includes("linkedin")
+                              ? "Post do LinkedIn detectado"
+                              : detectedUrl.type === "article"
+                                ? "Artigo / Blog detectado"
+                                : "Link da Web detectado"}
                         :
                       </span>{" "}
                       <span className="text-white/60 font-mono text-[11px]">{detectedUrl.domain}</span>
