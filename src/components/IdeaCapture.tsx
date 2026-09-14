@@ -8,6 +8,8 @@ import {
   X,
   Link2,
   Youtube,
+  Linkedin,
+  Newspaper,
   Lightbulb,
   ShieldCheck,
 } from "lucide-react";
@@ -279,7 +281,21 @@ export default function IdeaCapture({
               <div className="flex items-start gap-3">
                 <div>
                   <p className="text-sm font-semibold text-white">Registre o que merece continuar vivo</p>
-                  <p className="mt-0.5 text-xs text-white/55">Escreva livremente ou cole um link de referência.</p>
+                  <p className="mt-0.5 text-xs text-white/55">Escreva livremente ou cole um link (YouTube, X, LinkedIn e artigos)</p>
+                  <div className="mt-2 flex flex-wrap items-center gap-1.5" aria-label="Fontes suportadas">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
+                      <Youtube size={11} className="text-red-400" />
+                      YouTube
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
+                      <Linkedin size={11} className="text-sky-400" />
+                      LinkedIn
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] font-medium text-white/70">
+                      <Newspaper size={11} className="text-[#EBAF2D]" />
+                      Blogs e artigos
+                    </span>
+                  </div>
                 </div>
               </div>
               <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-2.5 py-1 text-[11px] font-medium text-emerald-300">
@@ -325,6 +341,10 @@ export default function IdeaCapture({
                   <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#EBAF2D]/10 border border-[#EBAF2D]/25 text-xs text-[#EBAF2D]">
                     {detectedUrl.type === "youtube" ? (
                       <Youtube size={15} className="shrink-0 text-red-400" />
+                    ) : detectedUrl.domain.includes("linkedin") ? (
+                      <Linkedin size={15} className="shrink-0 text-sky-400" />
+                    ) : detectedUrl.type === "article" ? (
+                      <Newspaper size={15} className="shrink-0 text-[#EBAF2D]" />
                     ) : (
                       <Link2 size={15} className="shrink-0 text-[#EBAF2D]" />
                     )}
@@ -332,26 +352,19 @@ export default function IdeaCapture({
                       <span className="font-medium text-white/90">
                         {detectedUrl.type === "youtube"
                           ? "Vídeo do YouTube detectado"
-                          : detectedUrl.type === "article"
-                            ? "Artigo / Blog detectado"
-                            : "Link da Web detectado"}
+                          : detectedUrl.domain.includes("linkedin")
+                            ? "Post do LinkedIn detectado"
+                            : detectedUrl.type === "article"
+                              ? "Artigo / Blog detectado"
+                              : "Link da Web detectado"}
                         :
                       </span>{" "}
                       <span className="text-white/60 font-mono text-[11px]">{detectedUrl.domain}</span>
-                      <span className="text-white/40 ml-1.5 hidden sm:inline">
-                        · O link será processado por serviços externos de leitura e IA
-                      </span>
                     </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-
-            <div className="mt-4 flex flex-col gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3.5 py-3 text-xs leading-relaxed">
-              <p className="text-white/45">
-                Links podem ser processados por serviços externos de leitura e transcrição.
-              </p>
-            </div>
 
             {/* Barra Inferior de Controles */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-5 border-t border-white/10">
