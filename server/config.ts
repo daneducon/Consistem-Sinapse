@@ -18,6 +18,9 @@ export const config = {
   openRouterTimeoutMs: integer("OPENROUTER_TIMEOUT_MS", 20_000, 1_000, 60_000),
   rateLimitWindowMs: integer("RATE_LIMIT_WINDOW_MS", 60_000, 1_000, 3_600_000),
   rateLimitMax: integer("RATE_LIMIT_MAX", 20, 1, 1_000),
+  scrapegraphApiKey: process.env.SGAI_API_KEY?.trim() || "",
+  scrapegraphTimeoutMs: integer("SGAI_TIMEOUT_MS", 15_000, 1_000, 60_000),
+  scrapegraphEnabled: (process.env.SCRAPEGRAPH_ENABLED || "true").trim().toLowerCase() !== "false",
 };
 
 if (!config.allowedEmailDomain || config.allowedEmailDomain.includes("@")) {
